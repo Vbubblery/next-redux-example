@@ -5,12 +5,12 @@ import {connect} from 'react-redux';
 class Counter extends React.Component {
   increment = () => {
     const {dispatch} = this.props
-    dispatch(incrementCount())
+    dispatch(incrementCount({count:this.props.count+1}))
   }
 
   decrement = () => {
   const {dispatch} = this.props
-  dispatch(decrementCount())
+  dispatch(decrementCount({count:this.props.count-1}))
 }
 
   reset = () => {
