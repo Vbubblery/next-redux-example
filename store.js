@@ -3,8 +3,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 
 const initialState = {
-  count:0,
-  username:'Bubble',
+  counter:{
+    count:0,
+    update:10,
+  },
 };
 
 const actionTypes = {
@@ -17,17 +19,17 @@ const actionTypes = {
 const countReducer = (state = initialState, action) => { // state include the current state value.
   switch (action.type) {
     case actionTypes.INCREMENT:
-      return Object.assign({}, state, {count:action.count})
+      return {...state, counter:{...state.counter,count:action.count}}
     case actionTypes.DECREMENT:
-      return Object.assign({}, state, {count:action.count})
+      return {...state, counter:{...state.counter,count:action.count}}
     case actionTypes.RESET:
-      return Object.assign({}, state, {count:initialState.count})
+      return {...state, counter:initialState.counter}
     default: return state
   }
 }
 
 const reducers = combineReducers({
-  count:countReducer,
+  counter:countReducer, //the key mush be the same as the key of state's key.
 });
 
 //Actions
@@ -42,5 +44,5 @@ export const resetCount = (props) => dispatch => {
 }
 
 export const initializeStore = (initialState = initialState) => {
-  return createStore(reducers, initialState,composeWithDevTools(applyMiddleware(thunkMiddleware)))
+  return createStore(countReducer, initialState,composeWithDevTools(applyMiddleware(thunkMiddleware)))
 }
