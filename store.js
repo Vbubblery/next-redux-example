@@ -1,8 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
+
 const initialState = {
   count:0,
+  username:'Bubble',
 };
 
 const actionTypes = {
@@ -12,7 +14,7 @@ const actionTypes = {
 };
 
 // Reducers
-const reducer = (state = initialState, action) => { // state include the current state value.
+const countReducer = (state = initialState, action) => { // state include the current state value.
   switch (action.type) {
     case actionTypes.INCREMENT:
       return Object.assign({}, state, {count:action.count})
@@ -23,6 +25,10 @@ const reducer = (state = initialState, action) => { // state include the current
     default: return state
   }
 }
+
+const reducers = combineReducers({
+  count:countReducer,
+});
 
 //Actions
 export const incrementCount = (props) => dispatch => {
@@ -36,5 +42,5 @@ export const resetCount = (props) => dispatch => {
 }
 
 export const initializeStore = (initialState = initialState) => {
-  return createStore(reducer, initialState,composeWithDevTools(applyMiddleware(thunkMiddleware)))
+  return createStore(reducers, initialState,composeWithDevTools(applyMiddleware(thunkMiddleware)))
 }

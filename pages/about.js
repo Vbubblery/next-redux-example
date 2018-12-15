@@ -15,8 +15,8 @@ class Index extends React.Component {
   render () {
     return (
       <>
-        <Link href="/about"><a>About</a></Link>
-        <Counter />
+      <Link href="/"><a>index</a></Link>
+      <Counter />
       </>
     )
   }
