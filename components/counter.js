@@ -8,18 +8,24 @@ class Counter extends React.Component {
   }
   increment = () => {
     const {dispatch} = this.props
-    dispatch(incrementCount({count:this.props.count+1}))
+    setTimeout(() => {
+      dispatch(incrementCount({count:this.props.count+1}));
+    },1000)
+
   }
 
   decrement = () => {
-  const {dispatch} = this.props
-  dispatch(decrementCount({count:this.props.count-1}))
+    const {dispatch} = this.props
+    setTimeout(() => {
+      dispatch(incrementCount({count:this.props.count-1}));
+    },1000)
   }
 
   reset = () => {
-  const {dispatch} = this.props
-  dispatch(resetCount())
+    const {dispatch} = this.props
+    dispatch(resetCount())
   }
+
   render(){
     return (
       <div>
