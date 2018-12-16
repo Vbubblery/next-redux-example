@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunkMiddleware from 'redux-thunk';
+import promiseMiddleware from 'redux-promise';
 
 const initialState = {
   counter:{
@@ -44,5 +44,5 @@ export const resetCount = (props) => dispatch => {
 }
 
 export const initializeStore = (initialState = initialState) => {
-  return createStore(countReducer, initialState,composeWithDevTools(applyMiddleware(thunkMiddleware)))
+  return createStore(countReducer, initialState,composeWithDevTools(applyMiddleware(promiseMiddleware)))
 }
