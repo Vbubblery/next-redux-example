@@ -2,6 +2,8 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import promiseMiddleware from 'redux-promise';
 
+import * as T from './lib/actionTypes';
+
 const initialState = {
   counter:{
     count:0,
@@ -9,20 +11,14 @@ const initialState = {
   },
 };
 
-const actionTypes = {
-  INCREMENT: 'INCREMENT',
-  DECREMENT: 'DECREMENT',
-  RESET: 'RESET'
-};
-
 // Reducers
 const countReducer = (state = initialState, action) => { // state include the current state value.
   switch (action.type) {
-    case actionTypes.INCREMENT:
+    case T.counterActionTypes.INCREMENT:
       return {...state, counter:{...state.counter,count:action.count}}
-    case actionTypes.DECREMENT:
+    case T.counterActionTypes.DECREMENT:
       return {...state, counter:{...state.counter,count:action.count}}
-    case actionTypes.RESET:
+    case T.counterActionTypes.RESET:
       return {...state, counter:initialState.counter}
     default: return state
   }
@@ -34,13 +30,13 @@ const reducers = combineReducers({
 
 //Actions
 export const incrementCount = (props) => dispatch => {
-  return dispatch({ type: actionTypes.INCREMENT, count:props.count })
+  return dispatch({ type: T.counterActionTypes.INCREMENT, count:props.count })
 }
 export const decrementCount = (props) => dispatch => {
-  return dispatch({ type: actionTypes.DECREMENT, count:props.count })
+  return dispatch({ type: T.counterActionTypes.DECREMENT, count:props.count })
 }
 export const resetCount = (props) => dispatch => {
-  return dispatch({ type: actionTypes.RESET })
+  return dispatch({ type: T.counterActionTypes.RESET })
 }
 
 export const initializeStore = (initialState = initialState) => {
