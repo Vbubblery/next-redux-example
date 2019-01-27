@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import promiseMiddleware from 'redux-promise';
 
-import * as T from './lib/actionTypes';
+import * as T from './lib/actionTypes'
 
 const initialState = {
   counter:{
